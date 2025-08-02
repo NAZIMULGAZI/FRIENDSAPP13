@@ -1,10 +1,1 @@
-# Ensure consistent LF line endings for text files
 * text=auto
-
-# Force LF endings for frontend files
-*.js   text eol=lf
-*.jsx  text eol=lf
-*.css  text eol=lf
-*.html text eol=lf
-*.json text eol=lf
-*.md   text eol=lf
