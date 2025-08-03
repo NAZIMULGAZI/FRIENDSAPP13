@@ -6,7 +6,7 @@ import { Button } from './ui/button'
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import CommentDialog from './CommentDialog'
 import { useDispatch, useSelector } from 'react-redux'
-// import axios from 'axios'
+import axios from 'axios'
 import axiosInstance from '@/lib/axiosInstance';
 import { toast } from 'sonner'
 import { setPosts, setSelectedPost } from '@/redux/postSlice'
@@ -59,7 +59,7 @@ const Post = ({ post }) => {
     const commentHandler = async () => {
 
         try {
-            const res = await axiosInstance.get(`/post/${post._id}/comment`, { text }, {
+            const res = await axios.get(`https://friendsapp13.onrender.com/api/v1/post/${post._id}/comment`, { text }, {
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -85,7 +85,7 @@ const Post = ({ post }) => {
 
     const deletePostHandler = async () => {
         try {
-            const res = await axiosInstance.delete(`/post/delete/${post?._id}`, { withCredentials: true })
+            const res = await axios.delete(`https://friendsapp13.onrender.com/api/v1/post/delete/${post?._id}`, { withCredentials: true })
             if (res.data.success) {
                 const updatedPostData = posts.filter((postItem) => postItem?._id !== post?._id);
                 dispatch(setPosts(updatedPostData));
@@ -99,7 +99,7 @@ const Post = ({ post }) => {
 
     const bookmarkHandler = async () => {
         try {
-            const res = await axiosInstance.get(`/post/${post._id}/bookmark`, {withCredentials:true});
+            const res = await axios.get(`https://friendsapp13.onrender.com/api/v1/post/${post._id}/bookmark`, {withCredentials:true});
             if(res.data.success){
                 toast.success(res.data.message);
             }
