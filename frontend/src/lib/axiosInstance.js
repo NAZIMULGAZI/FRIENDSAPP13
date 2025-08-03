@@ -1,9 +1,12 @@
-import axios from "axios";
+import axios from 'axios';
 
- const axiosInstance = axios.create({
+const token = localStorage.getItem("token");
+
+const axiosInstance = axios.create({
   baseURL: "https://friendsapp13.onrender.com/api/v1",
-  withCredentials: true,
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
 });
-
 
 export default axiosInstance;
